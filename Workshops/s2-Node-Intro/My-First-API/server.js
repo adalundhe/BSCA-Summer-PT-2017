@@ -33,6 +33,18 @@ app.post('/api', (req,res) => {
 })
 
 
+// UPDATE EXISTING CUSTOMER
+app.put('/api/:customer',(req,res) => {
+  let searchName = data.indexOf(req.params.customer)
+
+  if(searchName !== -1){
+    data[searchName] = req.body.newCustomer
+    res.json({ message: `Successfully modified customer: ${req.params.customer}`, data: data[searchName] })
+  }
+  else{
+    res.json({ message: `Couldn't find customer: ${req.params.customer}`, data: null })
+  }
+})
 
 
 app.listen(port,() => console.log(`Listening on port: ${port}`))
